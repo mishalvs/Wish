@@ -1,0 +1,322 @@
+:root {
+  --bg1: #FAF7FF;
+  --bg2: #E8F8FF;
+  --accent: #FF84C0;
+  --accent2: #7AE7C7;
+  --text: #0f172a;
+}
+
+/* -------------------
+   Base Styles
+-------------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(160deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  overflow-y: auto;           /* ✅ allow scrolling */
+  overflow-x: hidden;         /* prevent sideways scroll */
+  scroll-behavior: smooth;    /* ✅ smooth scrolling */
+}
+
+.stage {
+  position: relative;
+  min-height: 100vh;
+  overflow: visible;          /* ✅ allow scroll elements to move naturally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 0;
+}
+
+/* -------------------
+   Start Overlay
+-------------------- */
+.start-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(0deg, rgba(10,10,20,0.35), rgba(255,255,255,0.1));
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+}
+
+.start-btn {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: white;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-weight: 700;
+  box-shadow: 0 8px 30px rgba(125, 50, 120, 0.12);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.hint {
+  color: #123;
+  opacity: 0.9;
+  font-size: 14px;
+  text-align: center;
+  max-width: 320px;
+}
+
+/* -------------------
+   Balloons
+-------------------- */
+.balloon {
+  position: absolute;
+  width: 88px;
+  height: 112px;
+  border-radius: 60% 60% 50% 50%;
+  transform-origin: 50% 60%;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 12px;
+  box-shadow: 0 8px 30px rgba(10,10,20,0.12);
+  user-select: none;
+  z-index: 10;
+}
+
+.string {
+  width: 2px;
+  height: 56px;
+  background: rgba(0,0,0,0.08);
+  position: absolute;
+  bottom: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(20deg);
+  width: 18px;
+  height: 14px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.25);
+}
+
+.b1 { background: linear-gradient(140deg, #FFD2E8, #FF84C0); }
+.b2 { background: linear-gradient(140deg, #D2F9EB, #7AE7C7); }
+.b3 { background: linear-gradient(140deg, #DCEBFF, #8FB4FF); }
+.b4 { background: linear-gradient(140deg, #FFF3C4, #FFD36E); }
+.b5 { background: linear-gradient(140deg, #E6D5FF, #BDB2FF); }
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  50% { transform: translateY(-16px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(-3deg); }
+}
+
+.pop {
+  animation: popScale 350ms ease-out forwards;
+}
+
+@keyframes popScale {
+  0% { transform: scale(1); opacity: 1; }
+  70% { transform: scale(1.25) rotate(-12deg); opacity: 0.9; }
+  100% { transform: scale(0.0); opacity: 0; }
+}
+
+/* -------------------
+   Stars
+-------------------- */
+.star {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 25;
+  opacity: 0.9;
+}
+
+.glow { box-shadow: 0 0 16px rgba(255,255,255,0.9); }
+
+/* -------------------
+   Card
+-------------------- */
+.card {
+  position: relative;
+  z-index: 30;
+  padding: 26px 30px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
+  box-shadow: 0 18px 50px rgba(10,10,30,0.12);
+  text-align: center;
+  max-width: 720px;
+  transform: translateY(30px) scale(0.95);
+  transition: all 600ms cubic-bezier(.22,1,.36,1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card.revealed {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.headline {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  margin: 0 0 6px 0;
+  color: #0b1230;
+  text-shadow: 0 6px 20px rgba(138,95,156,0.12);
+}
+
+.sub {
+  font-size: 16px;
+  margin: 6px 0 0 0;
+  color: #223;
+}
+
+.sparkle {
+  display: inline-block;
+  margin-left: 8px;
+  transform-origin: 50% 50%;
+  animation: bounce 1000ms infinite linear;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0) rotate(0) scale(1); opacity: 0.9; }
+  50% { transform: translateY(-6px) rotate(8deg) scale(1.08); opacity: 1; }
+  100% { transform: translateY(0) rotate(0) scale(1); opacity: 0.9; }
+}
+
+/* -------------------
+   Confetti & Footer
+-------------------- */
+canvas.confettiCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.footer-hint {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  background: rgba(255,255,255,0.6);
+  padding: 8px 12px;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(20,30,60,0.06);
+  z-index: 35;
+  transition: opacity 400ms ease;
+}
+
+/* -------------------
+   Magic Stick
+-------------------- */
+.magic-stick {
+  position: absolute;
+  font-size: 32px;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* -------------------
+   Long Wish
+-------------------- */
+.long-wish {
+  position: relative;
+  z-index: 30;
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 24px 30px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
+  box-shadow: 0 18px 50px rgba(10,10,30,0.12);
+  font-size: 18px;
+  color: #0b1230;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 2s ease, transform 2s ease;
+  pointer-events: none;
+  text-align: center;
+}
+
+.long-wish.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* -------------------
+   Gift Box & Video
+-------------------- */
+.gift-box-container {
+  position: relative;
+  z-index: 28;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.gift-box {
+  font-size: 72px;
+  cursor: pointer;
+  transition: transform 0.4s ease, opacity 0.6s ease;
+  animation: bounceGift 1.5s infinite ease-in-out;
+}
+
+.gift-hint {
+  font-size: 14px;
+  color: #223;
+  opacity: 0.8;
+  margin-top: 8px;
+  transition: opacity 0.6s ease;
+}
+
+@keyframes bounceGift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.birthday-video {
+  width: 200px;
+  max-width: 90%;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 1.5s ease, transform 4s ease;
+  display: none;
+}
+
+.birthday-video.show {
+  display: block;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* -------------------
+   Responsive
+-------------------- */
+@media (max-width: 520px) {
+  .balloon { width: 68px; height: 92px; }
+  .card { padding: 18px; border-radius: 14px; }
+  .headline { font-size: 24px; }
+}

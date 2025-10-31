@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday — Celebration</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="stage" id="stage">
+    <canvas class="confettiCanvas" id="confettiCanvas"></canvas>
+    <div id="balloons"></div>
+
+    <section id="celebrationSection">
+      <div class="card" id="messageCard" aria-live="polite">
+        <h1 class="headline" id="headline"></h1>
+        <p class="sub" id="subtext"></p>
+      </div>
+
+      <!-- Gift Box & Video -->
+      <div class="gift-box-container" id="giftBoxContainer" style="display:none;">
+        <div class="gift-box" id="giftBox">🎁</div>
+        <p class="gift-hint" id="giftHint">Tap to open your surprise</p>
+        <video id="birthdayVideo" class="birthday-video" muted loop playsinline>
+          <source src="gif.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="long-wish" id="longWish"></div>
+    </section>
+
+    <div class="start-overlay" id="startOverlay">
+      <h2 style="margin:0; font-size:20px;">A little celebration in the browser</h2>
+      <p class="hint">
+        Click the button to begin. Pop balloons, let stars follow your magic stick,
+        and reveal a glowing birthday wish. Music will begin after you click.
+      </p>
+      <button class="start-btn" id="startBtn">Start the Celebration 🎉</button>
+    </div>
+
+    <div class="footer-hint" id="footerHint">
+      Click balloons or anywhere to reveal the wish • Pop 5 balloons to unlock faster
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
