@@ -7,100 +7,67 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="bg-grid"></div>
-  <canvas id="starfieldCanvas"></canvas>
+  <div class="ambient-glow"></div>
 
-  <div class="sound-widget" id="soundWidget" title="Toggle DJ Beats">
-    <div class="disc" id="disc">🪩</div>
-    <span class="sound-label" id="soundLabel">Play Beats</span>
-  </div>
+  <!-- Stage Container (Strictly 1 Screen, No Scrolling) -->
+  <main class="stage">
 
-  <main class="app-container">
-    <header class="hero-card">
-      <div class="badge">Celebration Mode • 2026</div>
-      <h1 class="glitch-title">HAPPY BIRTHDAY, <span class="highlight">TASHU!</span> 🥂</h1>
-      <p class="tagline">To my personal noise-canceling human. Here’s your official upgrade for the year ahead.</p>
-    </header>
-
-    <section class="interactive-section">
-      <div class="section-header">
-        <h2>🎈 Pop The Birthday Balloons</h2>
-        <p>Pop 5 balloons to unlock the party secret!</p>
+    <!-- STAGE 1: The Front Door / Entrance -->
+    <div class="room active" id="room1">
+      <div class="room-content">
+        <span class="badge">Level 01 • The Entrance</span>
+        <h1>HAPPY BIRTHDAY,<br><span class="highlight">TASHU!</span> 🚪✨</h1>
+        <p>A special birthday vault is locked behind this door. Ready to break in?</p>
+        <button class="primary-btn" onclick="nextRoom(2)">Unlock Front Door 🔓</button>
       </div>
-      <div class="balloon-arena" id="balloonArena"></div>
-      <div class="unlock-counter" id="unlockCounter">0 / 5 Popped</div>
-    </section>
+    </div>
 
-    <section class="vault-section hidden" id="vaultSection">
-      <div class="glass-card cake-card">
-        <h3>🎂 Make a Wish & Blow</h3>
-        <div class="cake-container">
-          <div class="cake-base">
-            <div class="candle">
-              <div class="flame" id="flame"></div>
+    <!-- STAGE 2: The Balloon Room -->
+    <div class="room" id="room2">
+      <div class="room-content">
+        <span class="badge">Level 02 • Security Check</span>
+        <h2>Pop 3 Balloons to Proceed</h2>
+        <div class="mini-balloons" id="miniBalloons">
+          <div class="ball" onclick="popMiniBalloon(this)">🎈</div>
+          <div class="ball" onclick="popMiniBalloon(this)">🎈</div>
+          <div class="ball" onclick="popMiniBalloon(this)">🎈</div>
+        </div>
+        <p id="balloonStatus" class="sub-hint">Tap them all to break the security seal!</p>
+      </div>
+    </div>
+
+    <!-- STAGE 3: The Cake & Candle Room -->
+    <div class="room" id="room3">
+      <div class="room-content">
+        <span class="badge">Level 03 • The Wish Chamber</span>
+        <h2>Blow Out the Candle</h2>
+        <div class="cake-box">
+          <div class="cake-tier">
+            <div class="mini-candle">
+              <div class="mini-flame" id="miniFlame"></div>
             </div>
           </div>
         </div>
-        <button class="action-btn" id="blowBtn">✨ Blow Out Candle</button>
+        <button class="primary-btn" id="blowOutBtn" onclick="blowCandle()">Blow Out Flame 💨</button>
       </div>
+    </div>
 
-      <div class="section-header">
-        <h2>💌 "Open When..." Cards</h2>
-        <p>Click each card to reveal hidden notes</p>
+    <!-- STAGE 4: The Final Vault / Secret Letter Room -->
+    <div class="room" id="room4">
+      <div class="room-content final-room">
+        <span class="badge">Final Chamber • Unlocked 🎉</span>
+        <h2 style="margin-bottom: 8px;">Your Birthday Transmission</h2>
+        <div class="letter-box">
+          <p id="typewriterText"></p>
+        </div>
+        <button class="primary-btn" onclick="resetExperience()">🔄 Play Again</button>
       </div>
+    </div>
 
-      <div class="cards-grid">
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-inner">
-            <div class="flip-front">
-              <span class="card-icon">☕</span>
-              <h4>Open When... You Need Coffee</h4>
-            </div>
-            <div class="flip-back">
-              <p>Valid for one free coffee treat on me, anytime you need a quick break! ☕</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-inner">
-            <div class="flip-front">
-              <span class="card-icon">🎧</span>
-              <h4>Open When... Life Gets Loud</h4>
-            </div>
-            <div class="flip-back">
-              <p>Reminder: You're my noise-canceling human, but whenever you need to vent, I'm all ears! 🤝</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-inner">
-            <div class="flip-front">
-              <span class="card-icon">🍰</span>
-              <h4>Open When... You Want Cake</h4>
-            </div>
-            <div class="flip-back">
-              <p>Hope your year ahead is easy, bright, calm, and full of dessert! 🎂✨</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card letter-card">
-        <div class="terminal-header">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-          <span class="terminal-title">birthday_wish.txt</span>
-        </div>
-        <div class="terminal-body" id="terminalText"></div>
-      </div>
-    </section>
   </main>
 
   <script src="script.js"></script>
