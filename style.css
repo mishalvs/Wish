@@ -1,6 +1,6 @@
 :root {
   --bg: #090a0f;
-  --panel: rgba(18, 22, 36, 0.9);
+  --panel: rgba(18, 22, 36, 0.92);
   --accent: #ff4785;
   --cyan: #00f2fe;
   --gold: #ffd700;
@@ -20,6 +20,9 @@ html, body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow: hidden;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ambient-glow {
@@ -42,8 +45,9 @@ html, body {
 
 .stage {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -52,11 +56,11 @@ html, body {
 
 .room {
   position: absolute;
-  inset: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
   opacity: 0;
   pointer-events: none;
   transform: scale(0.96) translateY(15px);
@@ -74,15 +78,15 @@ html, body {
   border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   border-radius: 28px;
-  padding: 36px 28px;
+  padding: 32px 24px;
   width: 100%;
-  max-width: 440px;
+  max-width: 400px;
   text-align: center;
   box-shadow: 0 25px 60px rgba(0,0,0,0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .badge {
@@ -103,8 +107,8 @@ h1, h2 {
   line-height: 1.2;
 }
 
-h1 { font-size: 2.1rem; }
-h2 { font-size: 1.5rem; }
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.4rem; }
 
 .highlight {
   background: linear-gradient(135deg, var(--accent), var(--cyan));
@@ -114,7 +118,7 @@ h2 { font-size: 1.5rem; }
 
 p {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -149,16 +153,15 @@ p {
 
 .secondary-btn:hover { background: rgba(255, 255, 255, 0.12); }
 
-/* Mini Balloons in Room 2 */
 .mini-balloons {
   display: flex;
   gap: 20px;
   justify-content: center;
-  margin: 10px 0;
+  margin: 6px 0;
 }
 
 .ball {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   cursor: pointer;
   transition: transform 0.2s;
   animation: bounceBall 1.5s infinite ease-in-out alternate;
@@ -180,37 +183,35 @@ p {
 
 .sub-hint { font-size: 0.85rem; color: var(--cyan); }
 
-/* Chocolate Brownie Cake with 4 Candles */
 .brownie-cake {
-  width: 160px;
-  height: 90px;
+  width: 150px;
+  height: 80px;
   background: linear-gradient(180deg, var(--brownie-top), var(--brownie));
-  border-radius: 16px 16px 8px 8px;
+  border-radius: 14px 14px 6px 6px;
   position: relative;
-  margin: 20px auto 10px auto;
+  margin: 16px auto 6px auto;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
 .cake-drip {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 26px;
+  top: 0; left: 0; width: 100%; height: 22px;
   background: #5d4037;
-  border-radius: 16px 16px 8px 8px;
-  box-shadow: inset 0 -4px 6px rgba(0,0,0,0.3);
+  border-radius: 14px 14px 6px 6px;
 }
 
 .candles-row {
   position: absolute;
-  top: -34px;
+  top: -30px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  padding: 0 12px;
+  padding: 0 10px;
 }
 
 .candle {
-  width: 10px;
-  height: 34px;
+  width: 9px;
+  height: 30px;
   background: repeating-linear-gradient(45deg, var(--cyan), var(--cyan) 4px, #fff 4px, #fff 8px);
   border-radius: 2px;
   position: relative;
@@ -218,12 +219,12 @@ p {
 
 .flame {
   position: absolute;
-  top: -16px; left: 50%;
+  top: -14px; left: 50%;
   transform: translateX(-50%);
-  width: 12px; height: 16px;
+  width: 11px; height: 15px;
   background: radial-gradient(circle, #fff, var(--gold), #ff3300);
   border-radius: 50% 50% 20% 20%;
-  box-shadow: 0 0 12px var(--gold);
+  box-shadow: 0 0 10px var(--gold);
   animation: flicker 0.4s infinite alternate;
 }
 
@@ -234,46 +235,43 @@ p {
   100% { transform: translateX(-50%) scale(1.15) rotate(3deg); }
 }
 
-/* Aesthetic Card in Room 4 */
-.final-room { max-width: 420px; padding: 30px 24px; }
+.final-room { max-width: 380px; padding: 24px 20px; }
 
 .aesthetic-card {
   background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  padding: 24px;
+  border-radius: 18px;
+  padding: 20px;
   text-align: left;
   width: 100%;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .card-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 8px;
+  margin-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
-.sparkle-icon { font-size: 1.2rem; }
+.sparkle-icon { font-size: 1.1rem; }
 
 .card-header h3 {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--cyan);
-  letter-spacing: 0.5px;
 }
 
 .card-message {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #e2e8f0;
-  line-height: 1.7;
-  margin-bottom: 16px;
+  line-height: 1.6;
+  margin-bottom: 12px;
 }
 
 .card-signature {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--muted);
   text-align: right;
