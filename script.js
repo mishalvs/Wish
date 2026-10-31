@@ -29,10 +29,15 @@ function popMiniBalloon(el) {
 function blowCandles() {
   playPopSound();
   for (let i = 1; i <= 4; i++) {
-    document.getElementById(`flame${i}`).classList.add('out');
+    const flameEl = document.getElementById(`flame${i}`);
+    if (flameEl) flameEl.classList.add('out');
   }
-  document.getElementById('blowOutBtn').textContent = "Make a Wish Granted! ✨";
-  document.getElementById('blowOutBtn').style.background = "#22c55e";
+  
+  const btn = document.getElementById('blowOutBtn');
+  if (btn) {
+    btn.textContent = "Wish Granted! ✨";
+    btn.style.background = "#22c55e";
+  }
   
   triggerRibbonConfetti();
 
@@ -48,10 +53,14 @@ function resetExperience() {
   document.querySelectorAll('.ball').forEach(b => b.classList.remove('popped'));
   document.getElementById('balloonStatus').textContent = "Tap all three balloons to clear the path!";
   for (let i = 1; i <= 4; i++) {
-    document.getElementById(`flame${i}`).classList.remove('out');
+    const flameEl = document.getElementById(`flame${i}`);
+    if (flameEl) flameEl.classList.remove('out');
   }
-  document.getElementById('blowOutBtn').textContent = "Blow Out Candles 💨";
-  document.getElementById('blowOutBtn').style.background = "";
+  const btn = document.getElementById('blowOutBtn');
+  if (btn) {
+    btn.textContent = "Blow Out Candles 💨";
+    btn.style.background = "";
+  }
   nextRoom(1);
 }
 
