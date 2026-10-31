@@ -1,46 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Happy Birthday — Celebration</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Tashu ✨</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="stage" id="stage">
-    <canvas class="confettiCanvas" id="confettiCanvas"></canvas>
-    <div id="balloons"></div>
 
-    <section id="celebrationSection">
-      <div class="card" id="messageCard" aria-live="polite">
-        <h1 class="headline" id="headline"></h1>
-        <p class="sub" id="subtext"></p>
-      </div>
+  <div class="bg-grid"></div>
+  <canvas id="starfieldCanvas"></canvas>
 
-      <!-- Gift Box & Video -->
-      <div class="gift-box-container" id="giftBoxContainer" style="display:none;">
-        <div class="gift-box" id="giftBox">🎁</div>
-        <p class="gift-hint" id="giftHint">Tap to open your surprise</p>
-        <video id="birthdayVideo" class="birthday-video" muted loop playsinline>
-          <source src="gif.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="long-wish" id="longWish"></div>
-    </section>
-
-    <div class="start-overlay" id="startOverlay">
-      <h2 style="margin:0; font-size:20px;">A little celebration with Me</h2>
-      
-      <button class="start-btn" id="startBtn">Start the Celebration 🎉</button>
-    </div>
-
-    <div class="footer-hint" id="footerHint">
-      Click balloons or anywhere to reveal the wish • Pop 5 balloons to unlock faster
-    </div>
+  <div class="sound-widget" id="soundWidget" title="Toggle DJ Beats">
+    <div class="disc" id="disc">🪩</div>
+    <span class="sound-label" id="soundLabel">Play Beats</span>
   </div>
 
-  <script src="./script.js"></script>
+  <main class="app-container">
+    <header class="hero-card">
+      <div class="badge">Celebration Mode • 2026</div>
+      <h1 class="glitch-title">HAPPY BIRTHDAY, <span class="highlight">TASHU!</span> 🥂</h1>
+      <p class="tagline">To my personal noise-canceling human. Here’s your official upgrade for the year ahead.</p>
+    </header>
+
+    <section class="interactive-section">
+      <div class="section-header">
+        <h2>🎈 Pop The Birthday Balloons</h2>
+        <p>Pop 5 balloons to unlock the party secret!</p>
+      </div>
+      <div class="balloon-arena" id="balloonArena"></div>
+      <div class="unlock-counter" id="unlockCounter">0 / 5 Popped</div>
+    </section>
+
+    <section class="vault-section hidden" id="vaultSection">
+      <div class="glass-card cake-card">
+        <h3>🎂 Make a Wish & Blow</h3>
+        <div class="cake-container">
+          <div class="cake-base">
+            <div class="candle">
+              <div class="flame" id="flame"></div>
+            </div>
+          </div>
+        </div>
+        <button class="action-btn" id="blowBtn">✨ Blow Out Candle</button>
+      </div>
+
+      <div class="section-header">
+        <h2>💌 "Open When..." Cards</h2>
+        <p>Click each card to reveal hidden notes</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <span class="card-icon">☕</span>
+              <h4>Open When... You Need Coffee</h4>
+            </div>
+            <div class="flip-back">
+              <p>Valid for one free coffee treat on me, anytime you need a quick break! ☕</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <span class="card-icon">🎧</span>
+              <h4>Open When... Life Gets Loud</h4>
+            </div>
+            <div class="flip-back">
+              <p>Reminder: You're my noise-canceling human, but whenever you need to vent, I'm all ears! 🤝</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <span class="card-icon">🍰</span>
+              <h4>Open When... You Want Cake</h4>
+            </div>
+            <div class="flip-back">
+              <p>Hope your year ahead is easy, bright, calm, and full of dessert! 🎂✨</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card letter-card">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">birthday_wish.txt</span>
+        </div>
+        <div class="terminal-body" id="terminalText"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
