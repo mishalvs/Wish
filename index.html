@@ -7,26 +7,27 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <div class="ambient-glow"></div>
+  <canvas id="confettiCanvas"></canvas>
 
-  <!-- Stage Container (Strictly 1 Screen, No Scrolling) -->
+  <!-- Single Screen Stage (No Scrolling) -->
   <main class="stage">
 
-    <!-- STAGE 1: The Front Door / Entrance -->
+    <!-- STAGE 1: Welcome Entrance -->
     <div class="room active" id="room1">
       <div class="room-content">
-        <span class="badge">Level 01 • The Entrance</span>
-        <h1>HAPPY BIRTHDAY,<br><span class="highlight">TASHU!</span> 🚪✨</h1>
-        <p>A special birthday vault is locked behind this door. Ready to break in?</p>
-        <button class="primary-btn" onclick="nextRoom(2)">Unlock Front Door 🔓</button>
+        <span class="badge">Level 01 • The Beginning</span>
+        <h1>HAPPY BIRTHDAY,<br><span class="highlight">TASHU!</span> ✨</h1>
+        <p>A little celebration made just for you. Ready to step inside?</p>
+        <button class="primary-btn" onclick="nextRoom(2)">Start Celebration 🥂</button>
       </div>
     </div>
 
-    <!-- STAGE 2: The Balloon Room -->
+    <!-- STAGE 2: Balloon Pop Security -->
     <div class="room" id="room2">
       <div class="room-content">
         <span class="badge">Level 02 • Security Check</span>
@@ -36,35 +37,45 @@
           <div class="ball" onclick="popMiniBalloon(this)">🎈</div>
           <div class="ball" onclick="popMiniBalloon(this)">🎈</div>
         </div>
-        <p id="balloonStatus" class="sub-hint">Tap them all to break the security seal!</p>
+        <p id="balloonStatus" class="sub-hint">Tap all three balloons to clear the path!</p>
       </div>
     </div>
 
-    <!-- STAGE 3: The Cake & Candle Room -->
+    <!-- STAGE 3: Chocolate Brownie Cake & Candles -->
     <div class="room" id="room3">
       <div class="room-content">
         <span class="badge">Level 03 • The Wish Chamber</span>
-        <h2>Blow Out the Candle</h2>
-        <div class="cake-box">
-          <div class="cake-tier">
-            <div class="mini-candle">
-              <div class="mini-flame" id="miniFlame"></div>
-            </div>
+        <h2>Make a Wish & Blow Candles</h2>
+        
+        <!-- Chocolate Brownie Cake with 4 Candles -->
+        <div class="brownie-cake">
+          <div class="cake-drip"></div>
+          <div class="candles-row">
+            <div class="candle"><div class="flame" id="flame1"></div></div>
+            <div class="candle"><div class="flame" id="flame2"></div></div>
+            <div class="candle"><div class="flame" id="flame3"></div></div>
+            <div class="candle"><div class="flame" id="flame4"></div></div>
           </div>
         </div>
-        <button class="primary-btn" id="blowOutBtn" onclick="blowCandle()">Blow Out Flame 💨</button>
+
+        <button class="primary-btn" id="blowOutBtn" onclick="blowCandles()">Blow Out Candles 💨</button>
       </div>
     </div>
 
-    <!-- STAGE 4: The Final Vault / Secret Letter Room -->
+    <!-- STAGE 4: Final Aesthetic Birthday Card Message -->
     <div class="room" id="room4">
       <div class="room-content final-room">
-        <span class="badge">Final Chamber • Unlocked 🎉</span>
-        <h2 style="margin-bottom: 8px;">Your Birthday Transmission</h2>
-        <div class="letter-box">
-          <p id="typewriterText"></p>
+        <div class="aesthetic-card">
+          <div class="card-header">
+            <span class="sparkle-icon">✨</span>
+            <h3>To My Favorite Person</h3>
+          </div>
+          <p class="card-message">
+            You’ve been calm when everything else was loud — basically my personal noise-canceling human 😌. Thanks for sticking around and making life a little less dramatic 😂. If things ever get heavy, I’m still here. Hope your day’s easy, bright, and full of cake! 🎂✨
+          </p>
+          <div class="card-signature">— Always in your corner 🥂</div>
         </div>
-        <button class="primary-btn" onclick="resetExperience()">🔄 Play Again</button>
+        <button class="secondary-btn" onclick="resetExperience()">🔄 Replay Celebration</button>
       </div>
     </div>
 
