@@ -1,16 +1,14 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071b21">
-
 <title>A Little Something for Tashu ♡</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -25,9 +23,9 @@
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -69,7 +67,7 @@ button:focus-visible {
 }
 
 @keyframes float {
-  0%,100% {
+  0%, 100% {
     transform: translateY(0);
     opacity: .2;
   }
@@ -94,7 +92,7 @@ main {
   width: 100%;
   max-width: 560px;
   text-align: center;
-  animation: appear .9s ease both;
+  animation: appear .8s ease both;
 }
 
 .screen.active {
@@ -120,7 +118,7 @@ main {
   margin-bottom: 27px;
 }
 
-h1, h2, h3 {
+h1, h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
 }
@@ -148,14 +146,14 @@ p {
 
 .btn {
   display: inline-block;
-  border: 1px solid rgba(180,220,209,.45);
-  background: rgba(180,220,209,.1);
+  border: 1px solid #b4dcd177;
+  background: #b4dcd11a;
   color: var(--white);
   padding: 14px 27px;
   border-radius: 40px;
-  margin-top: 32px;
+  margin-top: 28px;
   cursor: pointer;
-  transition: .3s;
+  transition: .25s;
   font-size: 13px;
   letter-spacing: .5px;
 }
@@ -220,12 +218,11 @@ p {
 
 .balloon {
   font-size: 65px;
-  border: none;
+  border: 0;
   background: none;
   cursor: pointer;
   position: relative;
   animation: bob 2s ease-in-out infinite alternate;
-  transition: .3s;
   filter: drop-shadow(0 8px 14px #0004);
 }
 
@@ -261,46 +258,41 @@ p {
   letter-spacing: 2px;
 }
 
-/* CAKE SCENE */
+/* 3D BROWNIE CAKE */
 
 .cake-scene {
   position: relative;
-  width: 300px;
+  width: min(300px, 90vw);
   height: 250px;
-  margin: 35px auto 15px;
+  margin: 35px auto 12px;
   perspective: 850px;
 }
-
-/* Cake plate */
 
 .cake-plate {
   position: absolute;
   bottom: 14px;
-  left: 5px;
-  width: 290px;
+  left: 2%;
+  width: 96%;
   height: 32px;
   border-radius: 50%;
-  background:
-    linear-gradient(
-      180deg,
-      #e2eee4,
-      #9bbdb1 65%,
-      #547e75
-    );
+  background: linear-gradient(
+    180deg,
+    #e2eee4,
+    #9bbdb1 65%,
+    #547e75
+  );
   box-shadow:
     0 12px 22px #0007,
     inset 0 3px 5px #ffffffaa;
 }
 
-/* Cake body */
-
 .cake-3d {
   position: absolute;
   width: 220px;
-  height: 160px;
-  left: 40px;
-  top: 22px;
-  transform: rotateX(12deg);
+  height: 190px;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%) rotateX(12deg);
   transform-style: preserve-3d;
   animation: cakeAppear 1.2s ease both;
 }
@@ -308,39 +300,57 @@ p {
 @keyframes cakeAppear {
   from {
     opacity: 0;
-    transform: rotateX(12deg) translateY(35px) scale(.8);
+    transform: translateX(-50%) rotateX(12deg) translateY(35px) scale(.8);
   }
   to {
     opacity: 1;
-    transform: rotateX(12deg) translateY(0) scale(1);
+    transform: translateX(-50%) rotateX(12deg) translateY(0) scale(1);
   }
 }
 
-/* Brownie top */
+.brownie-front {
+  position: absolute;
+  top: 112px;
+  left: 10px;
+  width: 200px;
+  height: 62px;
+  border-radius: 0 0 15px 15px;
+  background: linear-gradient(180deg, #70432d, #3c2118 80%);
+  box-shadow: 0 12px 18px #0007;
+  z-index: 1;
+}
+
+.brownie-front:before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: #b17a50;
+  opacity: .8;
+}
 
 .brownie-top {
   position: absolute;
-  top: 20px;
+  top: 16px;
   left: 10px;
   width: 200px;
-  height: 125px;
-  border-radius: 22px 22px 15px 15px;
-
+  height: 122px;
+  border-radius: 50% / 22%;
   background:
     radial-gradient(circle at 25% 25%, #b48a6a 0 2px, transparent 3px),
     radial-gradient(circle at 70% 55%, #2d1710 0 3px, transparent 4px),
     radial-gradient(circle at 45% 75%, #c18d61 0 2px, transparent 4px),
     linear-gradient(145deg, #81553c, #543020 70%, #382017);
-
   box-shadow:
     inset 0 5px 12px #c3916945,
     0 8px 12px #0005;
-
   z-index: 2;
   overflow: hidden;
 }
 
-.brownie-top::after {
+.brownie-top:after {
   content: "";
   position: absolute;
   inset: 0;
@@ -349,46 +359,16 @@ p {
     radial-gradient(ellipse at 85% 70%, #25140f55, transparent 30%);
 }
 
-/* Brownie front */
-
-.brownie-front {
-  position: absolute;
-  top: 135px;
-  left: 10px;
-  width: 200px;
-  height: 35px;
-
-  background: linear-gradient(
-    180deg,
-    #70432d,
-    #3c2118
-  );
-
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 10px 15px #0006;
-  z-index: 1;
-}
-
-.brownie-layer {
-  position: absolute;
-  top: 8px;
-  width: 100%;
-  height: 5px;
-  background: #b17a50;
-  opacity: .8;
-}
-
 .brownie-decoration {
   position: absolute;
-  top: 47px;
-  left: 85px;
+  top: 42px;
+  left: 88px;
   z-index: 3;
   color: #f0c99a;
   font-size: 22px;
-  opacity: .85;
 }
 
-/* Candles */
+/* CANDLES */
 
 .candles {
   position: absolute;
@@ -401,14 +381,12 @@ p {
 }
 
 .candle {
-  height: 37px;
+  height: 39px;
   width: 7px;
   background: repeating-linear-gradient(
     45deg,
-    #f0d7b6 0px,
-    #f0d7b6 4px,
-    #6bb9ae 4px,
-    #6bb9ae 8px
+    #f0d7b6 0 4px,
+    #6bb9ae 4px 8px
   );
   border-radius: 3px;
   position: relative;
@@ -420,20 +398,16 @@ p {
   left: -1px;
   width: 9px;
   height: 15px;
-
   background: radial-gradient(
     ellipse,
     #fffbdc,
     #ffd16b 55%,
     #ff923c
   );
-
   border-radius: 50% 50% 40% 40%;
-
   box-shadow:
     0 0 12px #ffc66d,
     0 0 25px #ffb34d88;
-
   animation: flicker .45s infinite alternate;
 }
 
@@ -468,7 +442,7 @@ p {
   display: block;
 }
 
-/* MUSIC CONTROL */
+/* MUSIC */
 
 .music-control {
   display: inline-block;
@@ -480,11 +454,6 @@ p {
   font-size: 11px;
   cursor: pointer;
   margin-top: 15px;
-  transition: .3s;
-}
-
-.music-control:hover {
-  background: #72bcb322;
 }
 
 .music-error {
@@ -494,7 +463,7 @@ p {
   color: #f4d69a;
 }
 
-/* ANTIQUE LETTER */
+/* AGED HANDWRITTEN LETTER */
 
 .letter {
   position: relative;
@@ -503,15 +472,12 @@ p {
   padding: clamp(30px, 7vw, 48px);
   text-align: left;
   margin-top: 30px;
-
   background:
     radial-gradient(ellipse at 15% 20%, #a77d4930, transparent 28%),
     radial-gradient(ellipse at 85% 75%, #8b5e3530, transparent 25%),
     radial-gradient(ellipse at 90% 10%, #a77d4925, transparent 20%),
     linear-gradient(135deg, #eee0bd, #e5d2a8 55%, #d9c39b);
-
   color: #493322;
-
   clip-path: polygon(
     2% 1%, 14% 2%, 27% 0%, 42% 2%,
     59% 0%, 76% 2%, 98% 1%,
@@ -519,46 +485,28 @@ p {
     100% 65%, 97% 83%, 99% 98%,
     82% 97%, 65% 100%, 47% 98%,
     28% 100%, 12% 97%, 1% 99%,
-    3% 80%, 0% 63%, 2% 45%,
-    0% 27%
+    3% 80%, 0% 63%, 2% 45%, 0% 27%
   );
-
-  box-shadow:
-    0 20px 45px #0007,
-    inset 0 0 35px #98704435;
-
-  transform: rotate(-1deg);
+  filter: drop-shadow(0 18px 18px #0006);
+  transform: rotate(-.5deg);
 }
 
-/* Folded and aged paper texture */
-
-.letter::before {
+.letter:before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-
   background:
-    linear-gradient(
-      115deg,
-      transparent 47%,
-      #896d4520 49%,
-      transparent 51%
-    ),
-    linear-gradient(
-      15deg,
-      transparent 48%,
-      #896d451c 50%,
-      transparent 52%
-    ),
+    linear-gradient(115deg, transparent 47%, #896d4520 49%, transparent 51%),
+    linear-gradient(15deg, transparent 48%, #896d451c 50%, transparent 52%),
     radial-gradient(ellipse at 5% 90%, #6d492535, transparent 20%),
-    radial-gradient(ellipse at 95% 5%, #6d492525, transparent 20%);
-
-  opacity: .8;
+    radial-gradient(ellipse at 95% 5%, #6d492525, transparent 20%),
+    repeating-linear-gradient(25deg, transparent 0 19px, #8d704014 20px, transparent 21px);
+  opacity: .9;
 }
 
-.letter::after {
+.letter:after {
   content: "✧";
   position: absolute;
   right: 25px;
@@ -627,7 +575,7 @@ p {
 
 @keyframes fall {
   from {
-    transform: translateY(-20px) rotate(0deg);
+    transform: translateY(-20px) rotate(0);
     opacity: 1;
   }
   to {
@@ -639,18 +587,18 @@ p {
 /* RESPONSIVE */
 
 @media(max-width: 400px) {
-  .cake-scene {
-    transform: scale(.88);
-    transform-origin: center top;
-    margin-bottom: -10px;
-  }
-
   .balloon {
     font-size: 54px;
   }
 
   .letter {
     padding: 30px 24px;
+  }
+
+  .cake-scene {
+    transform: scale(.9);
+    transform-origin: top center;
+    margin-bottom: -8px;
   }
 }
 
@@ -666,9 +614,10 @@ p {
 }
 
 @media(prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *, *:before, *:after {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 </style>
@@ -678,27 +627,21 @@ p {
 
 <div id="particles"></div>
 
-<!-- Actual birthday recording -->
 <audio id="birthdaySong" preload="auto">
   <source
-    src="https://upload.wikimedia.org/wikipedia/commons/0/02/Happy_Birthday_to_You.ogg"
+    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Happy_Birthday_to_You.ogg"
     type="audio/ogg">
 </audio>
 
 <main>
 
-<!-- SCREEN 1: INTRO -->
+<!-- INTRO -->
 
 <section class="screen active" id="intro">
-
   <div class="intro-symbol">✧</div>
-
   <div class="eyebrow">A little something for you</div>
 
-  <h1>
-    Hey,<br>
-    <span class="accent">Tashu.</span>
-  </h1>
+  <h1>Hey,<br><span class="accent">Tashu.</span></h1>
 
   <p style="margin-top:22px">
     There's a little celebration waiting<br>
@@ -709,39 +652,24 @@ p {
     Enter your little celebration →
   </button>
 
-  <div class="small-note">
-    MADE WITH A LITTLE EXTRA LOVE ♡
-  </div>
-
+  <div class="small-note">MADE WITH A LITTLE EXTRA LOVE ♡</div>
 </section>
 
-
-<!-- SCREEN 2: COUNTDOWN -->
+<!-- COUNTDOWN -->
 
 <section class="screen" id="countdown">
-
-  <div class="eyebrow">
-    Something lovely is about to happen
-  </div>
-
+  <div class="eyebrow">Something lovely is about to happen</div>
   <h2>Ready, birthday girl?</h2>
-
   <div class="count-number" id="countNumber">3</div>
-
   <p>Let the little celebration begin...</p>
-
 </section>
 
-
-<!-- SCREEN 3: BALLOONS -->
+<!-- BALLOONS -->
 
 <section class="screen" id="balloons">
-
   <div class="eyebrow">A little birthday tradition</div>
 
-  <h2>
-    Pop, pop, <span class="accent">pop!</span>
-  </h2>
+  <h2>Pop, pop, <span class="accent">pop!</span></h2>
 
   <p>
     Three little balloons, just for you.<br>
@@ -749,54 +677,28 @@ p {
   </p>
 
   <div class="balloon-area">
-
-    <button class="balloon"
-      aria-label="Pop first balloon"
-      onclick="popBalloon(this)">🎈</button>
-
-    <button class="balloon"
-      aria-label="Pop second balloon"
-      onclick="popBalloon(this)">🎈</button>
-
-    <button class="balloon"
-      aria-label="Pop third balloon"
-      onclick="popBalloon(this)">🎈</button>
-
+    <button class="balloon" aria-label="Pop first balloon" onclick="popBalloon(this)">🎈</button>
+    <button class="balloon" aria-label="Pop second balloon" onclick="popBalloon(this)">🎈</button>
+    <button class="balloon" aria-label="Pop third balloon" onclick="popBalloon(this)">🎈</button>
   </div>
 
-  <div class="progress" id="balloonProgress">
-    0 / 3 POPPED
-  </div>
-
-  <p class="small-note" id="balloonHint">
-    Go on, they're waiting ♡
-  </p>
-
+  <div class="progress" id="balloonProgress">0 / 3 POPPED</div>
+  <p class="small-note" id="balloonHint">Go on, they're waiting ♡</p>
 </section>
 
-
-<!-- SCREEN 4: BROWNIE CAKE -->
+<!-- BROWNIE CAKE -->
 
 <section class="screen" id="cakeScreen">
+  <div class="eyebrow">A birthday isn't complete without this</div>
 
-  <div class="eyebrow">
-    A birthday isn't complete without this
-  </div>
+  <h2>A little <span class="accent">chocolate magic.</span></h2>
 
-  <h2>
-    A little <span class="accent">chocolate magic.</span>
-  </h2>
-
-  <p>
-    Because I hear someone really loves brownies...
-  </p>
+  <p>Because I hear someone really loves brownies...</p>
 
   <div class="cake-scene">
-
     <div class="cake-3d">
 
       <div class="candles" id="candles">
-
         <div class="candle"><div class="flame"></div></div>
         <div class="candle"><div class="flame"></div></div>
         <div class="candle"><div class="flame"></div></div>
@@ -806,22 +708,16 @@ p {
         <div class="candle"><div class="flame"></div></div>
         <div class="candle"><div class="flame"></div></div>
         <div class="candle"><div class="flame"></div></div>
-
       </div>
 
       <div class="brownie-top">
-        <div class="chocolate-drizzle"></div>
         <div class="brownie-decoration">✦</div>
       </div>
 
-      <div class="brownie-front">
-        <div class="brownie-layer"></div>
-      </div>
-
+      <div class="brownie-front"></div>
     </div>
 
     <div class="cake-plate"></div>
-
   </div>
 
   <div class="blow-text" id="blowText">
@@ -832,29 +728,25 @@ p {
     Take a breath & blow them out ♡
   </button>
 
-  <button
-    class="music-control"
-    id="musicControl"
-    onclick="toggleMusic()">
+  <br>
+
+  <button class="music-control" id="musicControl" onclick="toggleMusic()">
     ♫ Pause birthday music
   </button>
 
   <p class="music-error" id="musicError">
-    Music couldn't load. Please check your internet connection.
+    The song couldn't load. Check your connection, then tap the music button to try again.
   </p>
 
   <p class="wish-text" id="wishText">
     Now close your eyes...<br>
     Make a wish. Don't tell anyone. ✨
   </p>
-
 </section>
 
-
-<!-- SCREEN 5: BIRTHDAY LETTER -->
+<!-- FINAL LETTER -->
 
 <section class="screen" id="finalScreen">
-
   <div class="eyebrow">A little birthday letter</div>
 
   <div class="letter">
@@ -869,39 +761,32 @@ p {
     </h2>
 
     <p>
-      Okay first of all, I hope you're having
-      the loveliest birthday ever. You deserve
-      a day full of your favourite things,
-      good food, lots of laughs and absolutely
-      zero stress.
+      Okay, first of all, I hope you're having the loveliest birthday.
+      You deserve a day full of your favourite things, good food,
+      lots of laughs and absolutely zero stress.
     </p>
 
     <p>
-      I hope this year brings you so many
-      good surprises, exciting little adventures,
-      things to look forward to and moments
-      that make you randomly smile even
-      when you think about them later.
+      I hope this year brings you lovely surprises, exciting little
+      adventures, things to look forward to and moments that make
+      you randomly smile even when you think about them later.
     </p>
 
     <p>
-      Also, I hope you get an unreasonable
-      amount of brownies. Actually, forget
-      unreasonable. There is no such thing
+      Also, I hope you get an unreasonable amount of brownies.
+      Actually, forget unreasonable. There is no such thing
       as too many brownies.
     </p>
 
     <p>
-      Keep chasing the things you want,
-      take care of yourself, enjoy the little
-      things and don't forget to celebrate
+      Keep chasing the things you want, take care of yourself,
+      enjoy the little things and don't forget to celebrate
       how far you've come.
     </p>
 
     <p>
-      Anyway, enough of my rambling.
-      Have the happiest birthday, Tashu.
-      I hope November 2nd is just the beginning
+      Anyway, enough of my rambling. Have the happiest birthday,
+      Tashu. I hope November 2nd is just the beginning
       of a really, really good year for you.
     </p>
 
@@ -912,58 +797,58 @@ p {
 
   </div>
 
-  <div class="footer">
-    MADE FOR TASHU · 02.11 ♡
-  </div>
+  <div class="footer">MADE FOR TASHU · 02.11 ♡</div>
 
   <button class="btn" onclick="replay()">
     Experience it again ↻
   </button>
 
+  <p class="small-note">
+    Birthday song recording:
+    <a href="https://commons.wikimedia.org/wiki/File:Happy_Birthday_to_You.ogg"
+       target="_blank" rel="noopener" style="color:inherit">
+      Wikimedia Commons
+    </a>
+  </p>
 </section>
 
 </main>
 
-
 <script>
+const $ = id => document.getElementById(id);
+const audio = $('birthdaySong');
 
-/* --------------------------------
-   AMBIENT PARTICLES
--------------------------------- */
+let audioCtx = null;
+let popped = 0;
+let candlesBlown = false;
 
-const particleContainer =
-  document.getElementById('particles');
+let countdownTimer = null;
+let countdownTransition = null;
+let balloonsTransition = null;
+let finalTransition = null;
 
-for(let i = 0; i < 35; i++) {
+/* AMBIENT PARTICLES */
 
+for (let i = 0; i < 35; i++) {
   const p = document.createElement('div');
 
   p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.top = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 8 + 's';
+  p.style.animationDuration = (6 + Math.random() * 8) + 's';
 
-  p.style.left = Math.random()*100 + '%';
-  p.style.top = Math.random()*100 + '%';
-
-  p.style.animationDelay =
-    Math.random()*8 + 's';
-
-  p.style.animationDuration =
-    (6 + Math.random()*8) + 's';
-
-  particleContainer.appendChild(p);
+  $('particles').appendChild(p);
 }
 
-
-/* --------------------------------
-   SCREEN NAVIGATION
--------------------------------- */
+/* SCREEN NAVIGATION */
 
 function showScreen(id) {
-
-  document.querySelectorAll('.screen').forEach(s => {
-    s.classList.remove('active');
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
   });
 
-  document.getElementById(id).classList.add('active');
+  $(id).classList.add('active');
 
   window.scrollTo({
     top: 0,
@@ -971,34 +856,24 @@ function showScreen(id) {
   });
 }
 
-
-/* --------------------------------
-   SOUND EFFECTS
--------------------------------- */
-
-let audioCtx;
+/* SOUND EFFECTS */
 
 function initAudio() {
+  const AC = window.AudioContext || window.webkitAudioContext;
 
-  if(!audioCtx) {
+  if (!AC) return;
 
-    const AudioContext =
-      window.AudioContext ||
-      window.webkitAudioContext;
-
-    if(!AudioContext) return;
-
-    audioCtx = new AudioContext();
+  if (!audioCtx) {
+    audioCtx = new AC();
   }
 
-  if(audioCtx.state === 'suspended') {
+  if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
 }
 
-function tone(freq, duration, volume = .09, type = 'sine') {
-
-  if(!audioCtx) return;
+function tone(freq, duration, volume = .08, type = 'sine') {
+  if (!audioCtx) return;
 
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
@@ -1006,10 +881,7 @@ function tone(freq, duration, volume = .09, type = 'sine') {
   osc.type = type;
   osc.frequency.value = freq;
 
-  gain.gain.setValueAtTime(
-    volume,
-    audioCtx.currentTime
-  );
+  gain.gain.setValueAtTime(volume, audioCtx.currentTime);
 
   gain.gain.exponentialRampToValueAtTime(
     .001,
@@ -1024,36 +896,22 @@ function tone(freq, duration, volume = .09, type = 'sine') {
 }
 
 function popSound() {
-
   initAudio();
-
   tone(420, .12, .12, 'triangle');
-  tone(170, .15, .05, 'sine');
+  tone(170, .15, .05);
 }
 
 function sparkleSound() {
-
   initAudio();
 
-  [523, 659, 784].forEach((n,i) => {
-
-    setTimeout(() => {
-      tone(n, .5, .06);
-    }, i*130);
-
+  [523, 659, 784].forEach((n, i) => {
+    setTimeout(() => tone(n, .5, .06), i * 130);
   });
 }
 
-
-/* --------------------------------
-   COUNTDOWN
--------------------------------- */
-
-let countdownTimer;
-let countdownTransition;
+/* COUNTDOWN */
 
 function startCountdown() {
-
   initAudio();
 
   clearInterval(countdownTimer);
@@ -1062,358 +920,182 @@ function startCountdown() {
   showScreen('countdown');
 
   let n = 3;
+  const number = $('countNumber');
 
-  const number =
-    document.getElementById('countNumber');
-
-  function updateNumber() {
-
+  function update() {
     number.textContent = n;
-
     number.style.animation = 'none';
-
     void number.offsetWidth;
-
     number.style.animation = '';
   }
 
-  updateNumber();
+  update();
 
   countdownTimer = setInterval(() => {
-
     n--;
 
-    if(n > 0) {
-
-      updateNumber();
-
+    if (n > 0) {
+      update();
       tone(520, .15, .07);
-
     } else {
-
       clearInterval(countdownTimer);
 
       number.textContent = '♡';
-
       sparkleSound();
 
       countdownTransition = setTimeout(() => {
         showScreen('balloons');
       }, 850);
-
     }
-
   }, 1000);
 }
 
-
-/* --------------------------------
-   BALLOON POPPING
--------------------------------- */
-
-let popped = 0;
-let balloonsTransition;
+/* BALLOON POPPING */
 
 function popBalloon(el) {
-
-  if(el.classList.contains('popped')) return;
+  if (el.classList.contains('popped')) return;
 
   el.classList.add('popped');
-
   popSound();
 
   popped++;
 
-  document.getElementById(
-    'balloonProgress'
-  ).textContent = popped + ' / 3 POPPED';
+  $('balloonProgress').textContent = popped + ' / 3 POPPED';
 
-  if(popped === 3) {
-
-    document.getElementById(
-      'balloonHint'
-    ).textContent =
-      "Beautiful! Let the music play ♡";
+  if (popped === 3) {
+    $('balloonHint').textContent = 'Beautiful! Let the music play ♡';
 
     balloonsTransition = setTimeout(() => {
-
       showScreen('cakeScreen');
-
       playBirthdaySong();
-
       confetti();
-
-    }, 1000);
-
+    }, 850);
   }
 }
 
-
-/* --------------------------------
-   ACTUAL BIRTHDAY SONG
--------------------------------- */
-
-const birthdaySong =
-  document.getElementById('birthdaySong');
-
-const musicControl =
-  document.getElementById('musicControl');
-
-const musicError =
-  document.getElementById('musicError');
-
-function startBirthdayMusic() {
-
-  birthdaySong.volume = .65;
-
-  birthdaySong.currentTime = 0;
-
-  musicError.style.display = 'none';
-
-  birthdaySong.play().then(() => {
-
-    musicControl.textContent =
-      '♫ Pause birthday music';
-
-  }).catch(error => {
-
-    console.log('Audio playback error:', error);
-
-    musicControl.textContent =
-      '♫ Try playing birthday music';
-
-    musicError.style.display = 'block';
-
-  });
-}
+/* ACTUAL BIRTHDAY SONG */
 
 function playBirthdaySong() {
-  startBirthdayMusic();
+  audio.volume = .65;
+
+  $('musicError').style.display = 'none';
+
+  audio.play().then(() => {
+    $('musicControl').textContent = '♫ Pause birthday music';
+  }).catch(() => {
+    $('musicControl').textContent = '♫ Play birthday music';
+    $('musicError').style.display = 'block';
+  });
 }
 
 function toggleMusic() {
-
-  if(birthdaySong.paused) {
-
-    birthdaySong.play().then(() => {
-
-      musicControl.textContent =
-        '♫ Pause birthday music';
-
-      musicError.style.display = 'none';
-
-    }).catch(() => {
-
-      musicError.style.display = 'block';
-
-    });
-
+  if (audio.paused) {
+    playBirthdaySong();
   } else {
-
-    birthdaySong.pause();
-
-    musicControl.textContent =
-      '♫ Play birthday music';
-
+    audio.pause();
+    $('musicControl').textContent = '♫ Play birthday music';
   }
 }
 
-function stopBirthdayMusic() {
-
-  birthdaySong.pause();
-
-  birthdaySong.currentTime = 0;
-
-  musicControl.textContent =
-    '♫ Play birthday music';
-}
-
-birthdaySong.addEventListener('ended', () => {
-
-  musicControl.textContent =
-    '♫ Play birthday music';
-
+audio.addEventListener('ended', () => {
+  $('musicControl').textContent = '♫ Play birthday music';
 });
 
-birthdaySong.addEventListener('error', () => {
-
-  musicError.style.display = 'block';
-
-  musicControl.textContent =
-    '♫ Music unavailable';
-
+audio.addEventListener('error', () => {
+  $('musicError').style.display = 'block';
+  $('musicControl').textContent = '♫ Music unavailable';
 });
 
-
-/* --------------------------------
-   CANDLE BLOWING
--------------------------------- */
-
-let candlesBlown = false;
-let finalTransition;
+/* BLOW OUT CANDLES */
 
 function blowCandles() {
-
-  if(candlesBlown) return;
+  if (candlesBlown) return;
 
   candlesBlown = true;
 
-  document.querySelectorAll('.flame').forEach((flame,i) => {
-
+  document.querySelectorAll('.flame').forEach((flame, i) => {
     setTimeout(() => {
-
       flame.classList.add('out');
-
-    }, i*90);
-
+    }, i * 90);
   });
 
-  document.getElementById(
-    'blowText'
-  ).textContent =
-    'WISHES SENT INTO THE UNIVERSE ✨';
-
-  document.getElementById(
-    'blowBtn'
-  ).style.display = 'none';
-
-  document.getElementById(
-    'wishText'
-  ).classList.add('show');
+  $('blowText').textContent = 'WISHES SENT INTO THE UNIVERSE ✨';
+  $('blowBtn').style.display = 'none';
+  $('wishText').classList.add('show');
 
   sparkleSound();
-
   confetti();
 
   finalTransition = setTimeout(() => {
-
     showScreen('finalScreen');
-
     confetti();
-
   }, 3300);
-
 }
 
-
-/* --------------------------------
-   CONFETTI
--------------------------------- */
+/* CONFETTI */
 
 function confetti() {
+  const symbols = ['✦', '✧', '♡', '❋', '✿'];
 
-  const symbols = [
-    '✦',
-    '✧',
-    '♡',
-    '❋',
-    '✿'
-  ];
-
-  for(let i=0; i<35; i++) {
-
+  for (let i = 0; i < 35; i++) {
     const el = document.createElement('div');
 
     el.className = 'confetti';
-
-    el.textContent =
-      symbols[Math.floor(Math.random()*symbols.length)];
-
-    el.style.left =
-      Math.random()*100 + 'vw';
-
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
     el.style.top = '-20px';
 
     el.style.color = [
       '#b4dcd1',
       '#f4d69a',
-      '#ffffff'
-    ][Math.floor(Math.random()*3)];
+      '#fff'
+    ][Math.floor(Math.random() * 3)];
 
-    el.style.animationDelay =
-      Math.random()*.9 + 's';
+    el.style.animationDelay = Math.random() * .9 + 's';
 
     document.body.appendChild(el);
 
-    setTimeout(() => {
-      el.remove();
-    }, 4000);
-
+    setTimeout(() => el.remove(), 4000);
   }
 }
 
-
-/* --------------------------------
-   REPLAY EXPERIENCE
--------------------------------- */
+/* REPLAY */
 
 function replay() {
-
   clearInterval(countdownTimer);
-
   clearTimeout(countdownTransition);
   clearTimeout(balloonsTransition);
   clearTimeout(finalTransition);
 
-  stopBirthdayMusic();
+  audio.pause();
+  audio.currentTime = 0;
+
+  $('musicControl').textContent = '♫ Play birthday music';
 
   popped = 0;
-
   candlesBlown = false;
 
-  // Reset balloons
-
-  document.querySelectorAll('.balloon').forEach(b => {
-
-    b.classList.remove('popped');
-
+  document.querySelectorAll('.balloon').forEach(balloon => {
+    balloon.classList.remove('popped');
   });
 
-  document.getElementById(
-    'balloonProgress'
-  ).textContent = '0 / 3 POPPED';
+  $('balloonProgress').textContent = '0 / 3 POPPED';
+  $('balloonHint').textContent = "Go on, they're waiting ♡";
 
-  document.getElementById(
-    'balloonHint'
-  ).textContent = "Go on, they're waiting ♡";
-
-  // Reset flames
-
-  document.querySelectorAll('.flame').forEach(f => {
-
-    f.classList.remove('out');
-
+  document.querySelectorAll('.flame').forEach(flame => {
+    flame.classList.remove('out');
   });
 
-  // Reset cake screen
+  $('blowText').textContent = 'NINE CANDLES. NINE LITTLE WISHES.';
+  $('blowBtn').style.display = 'inline-block';
+  $('wishText').classList.remove('show');
 
-  document.getElementById(
-    'blowText'
-  ).textContent =
-    'NINE CANDLES. NINE LITTLE WISHES.';
-
-  document.getElementById(
-    'blowBtn'
-  ).style.display = 'inline-block';
-
-  document.getElementById(
-    'wishText'
-  ).classList.remove('show');
-
-  musicError.style.display = 'none';
-
-  // Reset countdown
-
-  document.getElementById(
-    'countNumber'
-  ).textContent = '3';
+  $('musicError').style.display = 'none';
+  $('countNumber').textContent = '3';
 
   showScreen('intro');
-
 }
-
 </script>
 
 </body>
 </html>
-```
