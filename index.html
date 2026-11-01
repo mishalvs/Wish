@@ -1,86 +1,864 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Tashu ✨</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Something for Tashu ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ocean: #0b252b;
+  --deep: #071b21;
+  --teal: #72bcb3;
+  --mint: #b4dcd1;
+  --gold: #f4d69a;
+  --white: #f1f5ef;
+  --muted: #a4bcb8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 40%, #19434a 0%, transparent 60%),
+    linear-gradient(145deg, var(--deep), var(--ocean));
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #b4dcd1;
+  border-radius: 50%;
+  opacity: .4;
+  animation: float 9s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); opacity: .2; }
+  50% { transform: translateY(-35px); opacity: .8; }
+}
+
+main {
+  min-height: 100svh;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 25px 16px;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+  animation: appear .9s ease both;
+}
+
+.screen.active {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 27px;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(42px, 9vw, 68px);
+  line-height: 1.12;
+}
+
+h2 {
+  font-size: clamp(30px, 6vw, 42px);
+  margin-bottom: 16px;
+}
+
+p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.accent {
+  color: var(--mint);
+  font-style: italic;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid rgba(180,220,209,.45);
+  background: rgba(180,220,209,.1);
+  color: var(--white);
+  padding: 14px 27px;
+  border-radius: 40px;
+  margin-top: 32px;
+  cursor: pointer;
+  transition: .3s;
+  font-size: 13px;
+  letter-spacing: .5px;
+}
+
+.btn:hover {
+  background: var(--mint);
+  color: var(--deep);
+  transform: translateY(-3px);
+}
+
+.small-note {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #779b98;
+  margin-top: 22px;
+}
+
+/* INTRO */
+
+.intro-symbol {
+  font-size: 40px;
+  margin-bottom: 27px;
+  color: var(--gold);
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  to { text-shadow: 0 0 30px #f4d69a; }
+}
+
+/* COUNTDOWN */
+
+.count-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 115px;
+  color: var(--gold);
+  animation: count .9s ease;
+}
+
+@keyframes count {
+  from { transform: scale(1.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* BALLOONS */
+
+.balloon-area {
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 5vw, 45px);
+  margin: 55px 0 35px;
+  min-height: 135px;
+}
+
+.balloon {
+  font-size: 65px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  animation: bob 2s ease-in-out infinite alternate;
+  transition: .3s;
+  filter: drop-shadow(0 8px 14px #0004);
+}
+
+.balloon:nth-child(2) { animation-delay: .5s; }
+.balloon:nth-child(3) { animation-delay: 1s; }
+
+@keyframes bob {
+  to { transform: translateY(-17px) rotate(5deg); }
+}
+
+.balloon.popped {
+  animation: pop .3s forwards;
+  pointer-events: none;
+}
+
+@keyframes pop {
+  to { transform: scale(1.7); opacity: 0; }
+}
+
+.progress {
+  font-size: 12px;
+  color: var(--teal);
+  letter-spacing: 2px;
+}
+
+/* CAKE */
+
+.cake-scene {
+  margin: 55px auto 25px;
+  position: relative;
+  width: 260px;
+  height: 190px;
+}
+
+.cake {
+  position: absolute;
+  width: 210px;
+  height: 95px;
+  bottom: 12px;
+  left: 25px;
+  background: linear-gradient(160deg, #684331, #382019);
+  border-radius: 10px 10px 17px 17px;
+  box-shadow: 0 17px 35px #0007;
+}
+
+.cake::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 27px;
+  background: linear-gradient(135deg, #95634c, #593326);
+  border-radius: 10px 10px 5px 5px;
+}
+
+.cake::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 12px;
+  width: 100%;
+  height: 7px;
+  background: #b07a57;
+  opacity: .6;
+}
+
+.cake-plate {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  width: 260px;
+  height: 15px;
+  border-radius: 50%;
+  background: linear-gradient(#d4e4da, #789d94);
+  box-shadow: 0 5px 15px #0006;
+}
+
+.candles {
+  position: absolute;
+  top: 28px;
+  left: 39px;
+  width: 182px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.candle {
+  width: 8px;
+  height: 44px;
+  position: relative;
+  border-radius: 3px;
+  background: repeating-linear-gradient(
+    45deg, #f1d8b5 0px, #f1d8b5 4px,
+    #76b7ac 4px, #76b7ac 8px
+  );
+}
+
+.flame {
+  position: absolute;
+  top: -19px;
+  left: 0;
+  width: 9px;
+  height: 17px;
+  background: radial-gradient(ellipse, #fff8c9, #ffba56 65%, #ff7a32);
+  border-radius: 50% 50% 40% 40%;
+  box-shadow: 0 0 15px #ffbd62, 0 0 30px #ffb34d88;
+  animation: flicker .5s infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform: rotate(-5deg) scale(.9); }
+  to { transform: rotate(5deg) scale(1.12); }
+}
+
+.flame.out {
+  display: none;
+}
+
+.blow-text {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.wish-text {
+  display: none;
+  color: var(--mint);
+  margin-top: 18px;
+  animation: appear 1s ease;
+}
+
+.wish-text.show {
+  display: block;
+}
+
+/* CARD */
+
+.letter {
+  background: linear-gradient(145deg, #f2eee1, #dce8df);
+  color: #24413d;
+  border-radius: 4px;
+  padding: clamp(27px, 6vw, 48px);
+  text-align: left;
+  position: relative;
+  box-shadow: 0 25px 80px #0005;
+  margin-top: 30px;
+}
+
+.letter::before {
+  content: "✧";
+  position: absolute;
+  right: 25px;
+  top: 18px;
+  font-size: 26px;
+  color: #7aa69a;
+}
+
+.letter-top {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #75978b;
+  margin-bottom: 25px;
+}
+
+.letter h2 {
+  color: #28544d;
+  font-size: clamp(27px, 6vw, 36px);
+  margin-bottom: 23px;
+}
+
+.letter p {
+  color: #47635b;
+  font-size: 13px;
+  line-height: 2;
+  margin-bottom: 16px;
+}
+
+.signature {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #b9cfc3;
+  text-align: right;
+  color: #64877c;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 17px;
+}
+
+.footer {
+  margin-top: 25px;
+  font-size: 10px;
+  color: #789b96;
+  letter-spacing: 2px;
+}
+
+/* CONFETTI */
+
+.confetti {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+  font-size: 17px;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  from { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  to { transform: translateY(100vh) rotate(600deg); opacity: 0; }
+}
+
+@media(max-height: 700px) {
+  main { padding-top: 15px; padding-bottom: 15px; }
+  .cake-scene { margin-top: 30px; }
+  .letter { padding: 25px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="ambient-glow"></div>
-  <canvas id="confettiCanvas"></canvas>
+<div id="particles"></div>
 
-  <!-- Single Screen Stage (No Scrolling) -->
-  <main class="stage">
+<main>
 
-    <!-- STAGE 1: Welcome Entrance -->
-    <div class="room active" id="room1">
-      <div class="room-content">
-        <span class="badge">Level 01 • The Beginning</span>
-        <h1>HAPPY BIRTHDAY,<br><span class="highlight">TASHU!</span> ✨</h1>
-        <p>A little celebration made just for you. Ready to step inside?</p>
-        <button class="primary-btn" onclick="nextRoom(2)">Start Celebration 🥂</button>
-      </div>
+<!-- SCREEN 1: INTRO -->
+<section class="screen active" id="intro">
+  <div class="intro-symbol">✧</div>
+  <div class="eyebrow">A little something for you</div>
+
+  <h1>Hey,<br><span class="accent">Tashu.</span></h1>
+
+  <p style="margin-top:22px">
+    There's a little celebration waiting<br>
+    on the other side of this screen.
+  </p>
+
+  <button class="btn" onclick="startCountdown()">
+    Enter your little celebration →
+  </button>
+
+  <div class="small-note">MADE WITH A LITTLE EXTRA LOVE ♡</div>
+</section>
+
+
+<!-- SCREEN 2: COUNTDOWN -->
+<section class="screen" id="countdown">
+  <div class="eyebrow">Something lovely is about to happen</div>
+  <h2>Ready, birthday girl?</h2>
+  <div class="count-number" id="countNumber">3</div>
+  <p>Let the little celebration begin...</p>
+</section>
+
+
+<!-- SCREEN 3: BALLOONS -->
+<section class="screen" id="balloons">
+  <div class="eyebrow">A little birthday tradition</div>
+  <h2>Pop, pop, <span class="accent">pop!</span></h2>
+  <p>Three little balloons, just for you.<br>Tap each one to set the celebration free.</p>
+
+  <div class="balloon-area">
+    <button class="balloon" aria-label="Pop first balloon" onclick="popBalloon(this)">🎈</button>
+    <button class="balloon" aria-label="Pop second balloon" onclick="popBalloon(this)">🎈</button>
+    <button class="balloon" aria-label="Pop third balloon" onclick="popBalloon(this)">🎈</button>
+  </div>
+
+  <div class="progress" id="balloonProgress">0 / 3 POPPED</div>
+  <p class="small-note" id="balloonHint">Go on, they're waiting ♡</p>
+</section>
+
+
+<!-- SCREEN 4: BROWNIE CAKE -->
+<section class="screen" id="cakeScreen">
+  <div class="eyebrow">A birthday isn't complete without this</div>
+  <h2>A little <span class="accent">chocolate magic.</span></h2>
+
+  <p>Because I hear someone really loves brownies...</p>
+
+  <div class="cake-scene">
+    <div class="candles" id="candles">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
     </div>
+    <div class="cake"></div>
+    <div class="cake-plate"></div>
+  </div>
 
-    <!-- STAGE 2: Balloon Pop Security -->
-    <div class="room" id="room2">
-      <div class="room-content">
-        <span class="badge">Level 02 • Security Check</span>
-        <h2>Pop 3 Balloons to Proceed</h2>
-        <div class="mini-balloons" id="miniBalloons">
-          <div class="ball" onclick="popMiniBalloon(this)">🎈</div>
-          <div class="ball" onclick="popMiniBalloon(this)">🎈</div>
-          <div class="ball" onclick="popMiniBalloon(this)">🎈</div>
-        </div>
-        <p id="balloonStatus" class="sub-hint">Tap all three balloons to clear the path!</p>
-      </div>
+  <div class="blow-text" id="blowText">NINE CANDLES. NINE LITTLE WISHES.</div>
+
+  <button class="btn" id="blowBtn" onclick="blowCandles()">
+    Take a breath & blow them out ♡
+  </button>
+
+  <p class="wish-text" id="wishText">
+    Now close your eyes...<br>
+    Make a wish. Don't tell anyone. ✨
+  </p>
+</section>
+
+
+<!-- SCREEN 5: BIRTHDAY LETTER -->
+<section class="screen" id="finalScreen">
+
+  <div class="eyebrow">A little birthday letter</div>
+
+  <div class="letter">
+    <div class="letter-top">01 NOVEMBER · A DAY JUST FOR YOU</div>
+
+    <h2>Happy Birthday,<br><span class="accent">Tashu!</span> ♡</h2>
+
+    <p>
+      I hope this new chapter of your life brings
+      you the kind of happiness that finds you
+      even on the most ordinary days.
+    </p>
+
+    <p>
+      I hope you get endless reasons to smile,
+      little moments that turn into favourite
+      memories, unexpected adventures,
+      and all the beautiful things you've been
+      wishing for.
+    </p>
+
+    <p>
+      May life be gentle with you, may your
+      dreams find their way to you, and may
+      you always have something to look forward
+      to.
+    </p>
+
+    <p>
+      Keep being your wonderfully unique self.
+      And please, never run out of reasons
+      to eat brownies. That's important.
+    </p>
+
+    <p>
+      Here's to another year of you being you.
+      I genuinely hope it's a beautiful one.
+    </p>
+
+    <div class="signature">
+      With warm wishes,<br>
+      Your online human ♡
     </div>
+  </div>
 
-    <!-- STAGE 3: Chocolate Brownie Cake & Candles -->
-    <div class="room" id="room3">
-      <div class="room-content">
-        <span class="badge">Level 03 • The Wish Chamber</span>
-        <h2>Make a Wish & Blow Candles</h2>
-        
-        <!-- Chocolate Brownie Cake with 4 Candles -->
-        <div class="brownie-cake">
-          <div class="cake-drip"></div>
-          <div class="candles-row">
-            <div class="candle"><div class="flame" id="flame1"></div></div>
-            <div class="candle"><div class="flame" id="flame2"></div></div>
-            <div class="candle"><div class="flame" id="flame3"></div></div>
-            <div class="candle"><div class="flame" id="flame4"></div></div>
-          </div>
-        </div>
+  <div class="footer">A LITTLE OCEAN OF WISHES · JUST FOR YOU</div>
 
-        <button class="primary-btn" id="blowOutBtn" onclick="blowCandles()">Blow Out Candles 💨</button>
-      </div>
-    </div>
+  <button class="btn" onclick="replay()">Experience it again ↻</button>
 
-    <!-- STAGE 4: Final Aesthetic Birthday Card Message -->
-    <div class="room" id="room4">
-      <div class="room-content final-room">
-        <div class="aesthetic-card">
-          <div class="card-header">
-            <span class="sparkle-icon">✨</span>
-            <h3>To My Favorite Person</h3>
-          </div>
-          <p class="card-message">
-            You’ve been calm when everything else was loud — basically my personal noise-canceling human 😌. Thanks for sticking around and making life a little less dramatic 😂. If things ever get heavy, I’m still here. Hope your day’s easy, bright, and full of cake! 🎂✨
-          </p>
-          <div class="card-signature">— Always in your corner 🥂</div>
-        </div>
-        <button class="secondary-btn" onclick="resetExperience()">🔄 Replay Celebration</button>
-      </div>
-    </div>
+</section>
 
-  </main>
+</main>
 
-  <script src="script.js"></script>
+<script>
+
+/* AMBIENT PARTICLES */
+
+const particleContainer = document.getElementById('particles');
+
+for(let i = 0; i < 35; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random()*100 + '%';
+  p.style.top = Math.random()*100 + '%';
+  p.style.animationDelay = Math.random()*8 + 's';
+  p.style.animationDuration = (6 + Math.random()*8) + 's';
+  particleContainer.appendChild(p);
+}
+
+
+/* SCREEN NAVIGATION */
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+}
+
+
+/* AUDIO ENGINE */
+
+let audioCtx;
+let musicTimers = [];
+
+function initAudio() {
+  if(!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
+  if(audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function tone(freq, duration, volume = 0.09, type = 'sine') {
+  if(!audioCtx) return;
+
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  osc.type = type;
+  osc.frequency.value = freq;
+
+  gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioCtx.currentTime + duration
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+function popSound() {
+  initAudio();
+  tone(420, .12, .12, 'triangle');
+  tone(170, .15, .05, 'sine');
+}
+
+function sparkleSound() {
+  initAudio();
+  [523, 659, 784].forEach((n,i) => {
+    setTimeout(() => tone(n, .5, .06), i*130);
+  });
+}
+
+
+/* COUNTDOWN */
+
+let countdownTimer;
+
+function startCountdown() {
+  initAudio();
+  showScreen('countdown');
+
+  let n = 3;
+  const number = document.getElementById('countNumber');
+
+  number.textContent = n;
+  number.style.animation = 'none';
+  void number.offsetWidth;
+  number.style.animation = '';
+
+  clearInterval(countdownTimer);
+
+  countdownTimer = setInterval(() => {
+    n--;
+
+    if(n > 0) {
+      number.textContent = n;
+      number.style.animation = 'none';
+      void number.offsetWidth;
+      number.style.animation = '';
+      tone(520, .15, .07);
+    } else {
+      clearInterval(countdownTimer);
+      number.textContent = '♡';
+      sparkleSound();
+
+      setTimeout(() => {
+        showScreen('balloons');
+      }, 850);
+    }
+  }, 1000);
+}
+
+
+/* BALLOONS */
+
+let popped = 0;
+
+function popBalloon(el) {
+  if(el.classList.contains('popped')) return;
+
+  el.classList.add('popped');
+  popSound();
+
+  popped++;
+
+  document.getElementById('balloonProgress').textContent =
+    popped + ' / 3 POPPED';
+
+  if(popped === 3) {
+    document.getElementById('balloonHint').textContent =
+      "Beautiful! Let the music play ♡";
+
+    setTimeout(() => {
+      showScreen('cakeScreen');
+      playBirthdaySong();
+      confetti();
+    }, 1000);
+  }
+}
+
+
+/* BIRTHDAY MELODY
+   Synthesized notes; no external audio needed.
+*/
+
+function playBirthdaySong() {
+  initAudio();
+  stopMusic();
+
+  // Birthday melody in C major.
+  const notes = [
+    [261.63,.4],[261.63,.4],[293.66,.8],
+    [261.63,.8],[349.23,.8],[329.63,1.2],
+
+    [261.63,.4],[261.63,.4],[293.66,.8],
+    [261.63,.8],[392,.8],[349.23,1.2],
+
+    [261.63,.4],[261.63,.4],[523.25,.8],
+    [440,.8],[349.23,.8],[329.63,.8],[293.66,1.2],
+
+    [466.16,.4],[466.16,.4],[440,.8],
+    [349.23,.8],[392,.8],[349.23,1.3]
+  ];
+
+  let time = audioCtx.currentTime + .5;
+
+  notes.forEach(([freq,duration]) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = 'triangle';
+    osc.frequency.value = freq;
+
+    gain.gain.setValueAtTime(.0001, time);
+    gain.gain.linearRampToValueAtTime(.07, time+.04);
+    gain.gain.setValueAtTime(.07, time+duration*.65);
+    gain.gain.exponentialRampToValueAtTime(
+      .0001,
+      time+duration*.95
+    );
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(time);
+    osc.stop(time+duration);
+
+    time += duration;
+  });
+
+  // Stop tracking after the melody ends.
+  const timeout = setTimeout(() => {
+    musicTimers = [];
+  }, (time-audioCtx.currentTime)*1000 + 100);
+
+  musicTimers.push(timeout);
+}
+
+function stopMusic() {
+  musicTimers.forEach(t => clearTimeout(t));
+  musicTimers = [];
+}
+
+
+/* CANDLE BLOWING */
+
+let candlesBlown = false;
+
+function blowCandles() {
+  if(candlesBlown) return;
+
+  candlesBlown = true;
+
+  document.querySelectorAll('.flame').forEach((flame,i) => {
+    setTimeout(() => flame.classList.add('out'), i*90);
+  });
+
+  document.getElementById('blowText').textContent =
+    'WISHES SENT INTO THE UNIVERSE ✨';
+
+  document.getElementById('blowBtn').style.display = 'none';
+
+  document.getElementById('wishText').classList.add('show');
+
+  sparkleSound();
+  confetti();
+
+  setTimeout(() => {
+    showScreen('finalScreen');
+    confetti();
+  }, 3300);
+}
+
+
+/* CONFETTI */
+
+function confetti() {
+  const symbols = ['✦','✧','♡','❋','✿'];
+
+  for(let i=0;i<35;i++) {
+    const el = document.createElement('div');
+
+    el.className = 'confetti';
+    el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.top = '-20px';
+    el.style.color = ['#b4dcd1','#f4d69a','#ffffff'][Math.floor(Math.random()*3)];
+    el.style.animationDelay = Math.random()*.9+'s';
+
+    document.body.appendChild(el);
+
+    setTimeout(() => el.remove(), 4000);
+  }
+}
+
+
+/* REPLAY */
+
+function replay() {
+  clearInterval(countdownTimer);
+  stopMusic();
+
+  popped = 0;
+  candlesBlown = false;
+
+  document.querySelectorAll('.balloon').forEach(b => {
+    b.classList.remove('popped');
+  });
+
+  document.getElementById('balloonProgress').textContent = '0 / 3 POPPED';
+  document.getElementById('balloonHint').textContent = 'Go on, they\'re waiting ♡';
+
+  document.querySelectorAll('.flame').forEach(f => {
+    f.classList.remove('out');
+  });
+
+  document.getElementById('blowText').textContent =
+    'NINE CANDLES. NINE LITTLE WISHES.';
+
+  document.getElementById('blowBtn').style.display = 'inline-block';
+  document.getElementById('wishText').classList.remove('show');
+
+  showScreen('intro');
+}
+
+</script>
 </body>
 </html>
